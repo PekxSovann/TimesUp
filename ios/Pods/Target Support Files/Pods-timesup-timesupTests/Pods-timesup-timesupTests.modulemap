@@ -1,0 +1,6 @@
+module Pods_timesup_timesupTests {
+  umbrella header "Pods-timesup-timesupTests-umbrella.h"
+
+  export *
+  module * { export * }
+}
