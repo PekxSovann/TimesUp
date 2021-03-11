@@ -1,0 +1,120 @@
+{
+  "french": {
+    "game": {
+      "team": "Equipe",
+      "points": "Points"
+    },
+    "round": {
+      "firstRule": "L'orateur parle librement mais il ne peut pas passer pendant ce round."
+    },
+    "gameSettings": {
+      "team": "Equipes",
+      "member": "Membres",
+      "memberPerTeam": "Nombre par équipes",
+      "chrono": "Chrono (s)",
+      "word": "Mots",
+      "perWord": "par mot",
+      "ranking": "CLASSEMENT"
+    },
+    "preGame": {
+      "soloTitle": "1 VS All",
+      "soloDescription": "(FR) One personne is the cluegiver, if he can make the guesser guess right, both get one point, if the guesser guess wrong, the cluegiver get one point and the guesser becomes the cluegiver",
+      "gameTitle": "Time’s Up!",
+      "gameDescription": "(FR) A game is played using a set of randomly chosen words. Each team gets time to guess as many words as possible, with one player (the Cluegiver) giving clues to his teammates (the Guesser)."
+    },
+    "selection": {
+      "playerSelect": "Joueurs",
+      "wordSelect": "Mots"
+    },
+    "input" : {
+      "inputPlayer": "Ajouter un joueur...",
+      "inputWord": "Ajouter un mot..."
+    },
+    "buttons": {
+      "play": "JOUER",
+      "rules": "RÈGLES",
+      "quit": "QUITTER",
+      "create": "CRÉER ÉQUIPES",
+      "yes": "OUI",
+      "no": "NON",
+      "skip": "PASSER",
+      "next": "PROCHAIN ROUND"
+    },
+    "modal": {
+      "language" : "Langue",
+      "default": "Utiliser les mots par défauts?",
+      "loading": "Chargement...",
+      "error": "Erreur",
+      "quit": "Voulez-vous quitter la partie?"
+    },
+    "errors": {
+      "player": "Vous n'avez pas assez de joueurs pour jouer, veuillez créer au moins 4 joueurs."
+    },
+    "pos": {
+      "first": "er",
+      "second": "ème",
+      "third": "ème",
+      "other": "ème"
+    }
+  },
+  "english": {
+    "game": {
+      "team": "Team",
+      "points": "Points"
+    },
+    "round": {
+      "firstRule": "The cluegiver can say anything but you can’t skip during this round.",
+      "secondRule": "The Cluegiver can say only one word, 1 guess only, passing allowed.",
+      "lastRule": "The Cluegiver can't say anything. Only mimes and sounds, 1 guess only, passing allowed."
+    },
+    "gameSettings": {
+      "team": "Teams",
+      "member": "Members",
+      "memberPerTeam": "Member per teams",
+      "chrono": "Chrono (s)",
+      "word": "Words",
+      "perWord": "per word",
+      "ranking": "RANKING"
+    },
+    "preGame": {
+      "soloTitle": "1 VS All",
+      "soloDescription": "One personne is the cluegiver, if he can make the guesser guess right, both get one point, if the guesser guess wrong, the cluegiver get one point and the guesser becomes the cluegiver",
+      "gameTitle": "Time’s Up!",
+      "gameDescription": "A game is played using a set of randomly chosen words. Each team gets time to guess as many words as possible, with one player (the Cluegiver) giving clues to his teammates (the Guesser)."
+    },
+    "selection": {
+      "playerSelect": "Players",
+      "wordSelect": "Add words"
+    },
+    "input" : {
+      "inputPlayer": "Add a player...",
+      "inputWord": "Add a word..."
+    },
+    "buttons": {
+      "play": "PLAY",
+      "rules": "RULES",
+      "quit": "QUIT",
+      "create": "CREATE TEAMS",
+      "yes": "YES",
+      "no": "NO",
+      "skip": "SKIP",
+      "next": "NEXT ROUND"
+    },
+    "modal": {
+      "language" : "Language",
+      "default": "Use default words?",
+      "loading": "Loading...",
+      "error": "Error",
+      "quit": "Do you want to leave the game?"
+    },
+    "errors": {
+      "player": "You don't have enough players, please create at least 4 players."
+    },
+    "pos": {
+      "first": "st",
+      "second": "nd",
+      "third": "rd",
+      "other": "th"
+    }
+  }
+}

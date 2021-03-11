@@ -1,13 +1,13 @@
 import React from 'react';
 import { FlatList } from 'react-native';
 
-import { ElementType, SizeType } from 'types';
+import Text from 'components/Text';
 
-import theme from 'static/theme';
+import { ElementType, SizeType } from 'types';
 
 import Cross from 'assets/Cross.svg';
 
-import Text from 'components/Text';
+import theme from 'static/theme';
 
 import {
   ListItem,

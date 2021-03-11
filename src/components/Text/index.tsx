@@ -22,7 +22,10 @@ const Text = (props: TextProps): JSX.Element => {
   }
 
   const sizes = {
+    [SizeType.VERYSMALL]: `${scale(13)}px`,
+    [SizeType.SMALL]: `${scale(18)}px`,
     [SizeType.NORMAL]: `${scale(24)}px`,
+    [SizeType.MEDIUM]: `${scale(30)}px`,
     [SizeType.BIG]: `${scale(36)}px`,
   }
 

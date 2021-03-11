@@ -1,14 +1,14 @@
-import { useEffect, useState, createContext } from 'react';
+import { useEffect, useState, createContext, useContext } from 'react';
+
+import WordingContext from 'hooks/wording';
 
 const wordData = require('static/basicWords.json');
-
-export interface PlayerHooks {
-  words?: string[];
-}
 
 export interface useWordProps {
   wordList: string[];
   wordPersoList: string[];
+  useDefaultWords: boolean;
+  setDefaultWord: (choice: boolean) => void,
   addWord: (word: string) => void;
   deleteWord: (index: number) => void;
   changeLanguage: (word: string) => void;
@@ -17,13 +17,16 @@ export interface useWordProps {
 const WordsContext = createContext<useWordProps>({
   wordList: [],
   wordPersoList: [],
+  useDefaultWords: true,
+  setDefaultWord: (choice: boolean) => {},
   addWord: (word: string) => {},
   deleteWord: (index: number) => {},
   changeLanguage: (word: string) => {},
 });
 
 export const useWords = (): useWordProps => {
-  const [language] = useState('english');
+  const wordingContext = useContext(WordingContext);
+  const [useDefaultWords, setDefaultWord] = useState(true);
   const [wordList, setWordList] = useState<string[]>([]);
   const [wordPersoList, setWordPersoList] = useState<string[]>([]);
   const [defaultLanguage, setDefault] = useState('english')
@@ -52,10 +55,18 @@ export const useWords = (): useWordProps => {
 
   useEffect(() => {
     setHistory(wordData);
-    setWordList(wordData[language]);
+    setWordList(wordData[wordingContext.language]);
   });
 
-  return { wordList, wordPersoList , addWord, deleteWord, changeLanguage };
+  return {
+    wordList,
+    wordPersoList,
+    useDefaultWords,
+    setDefaultWord,
+    addWord,
+    deleteWord,
+    changeLanguage
+  };
 }
 
 export default WordsContext

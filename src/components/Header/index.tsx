@@ -22,15 +22,15 @@ const Header = (props): JSX.Element => {
 
   return (
     <SettingsContainer>
+      <SettingButton onPress={settingFct}>
+        <SettingsLogo width={'100%'} height={'100%'} />
+      </SettingButton>
+
       {haveReturn && (
         <SettingButton onPress={returnFct}>
-          <QuitLogo width={'100%'} height={'100%'}/>
+          <QuitLogo width={'100%'} height={'100%'} />
         </SettingButton>
       )}
-
-      <SettingButton onPress={settingFct}>
-        <SettingsLogo width={'100%'} height={'100%'}/>
-      </SettingButton>
     </SettingsContainer>
   );
 };

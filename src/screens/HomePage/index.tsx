@@ -1,18 +1,20 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import { Platform, KeyboardAvoidingView, ScrollView } from 'react-native';
 import Spinner from 'react-native-loading-spinner-overlay';
 
-import useModalVisibility from 'hooks/modal';
-import PlayersContext from 'hooks/players';
-import WordsContext from 'hooks/words';
-import useLoading from 'hooks/loader';
+import Header from 'components/Header';
+import SettingModal from 'components/SettingModal';
+import ErrorModal from 'components/Error';
 
 import theme from 'static/theme';
 
 import Logo from 'assets/Logo.svg';
 
-import Header from 'components/Header';
-import SettingModal from 'components/SettingModal';
+import useModal from 'hooks/modal';
+import PlayersContext from 'hooks/players';
+import WordsContext from 'hooks/words';
+import useLoading from 'hooks/loader';
+import useWording from 'hooks/wording';
 
 import {
   Container,
@@ -29,8 +31,9 @@ const HomePage = ({ navigation }) => {
   const [input, setInput] = useState('');
   const { loading, setLoading } = useLoading();
   const playerContext = useContext(PlayersContext);
+  const modalContext = useContext(useModal);
   const wordContext = useContext(WordsContext);
-  const { modalVisible, setVisibility } = useModalVisibility();
+  const wordingContext = useContext(useWording);
 
   return (
     <Container>
@@ -38,7 +41,7 @@ const HomePage = ({ navigation }) => {
         behavior={Platform.OS === "ios" ? "padding" : undefined}
       >
         <ScrollView>
-          <Header settingFct={() => setVisibility(true)} />
+          <Header settingFct={() => modalContext.setVisibility(true)} />
 
           <LogoContainer>
             <Logo width={'80%'} height={'80%'} />
@@ -71,11 +74,13 @@ const HomePage = ({ navigation }) => {
 
       <Spinner
         visible={loading}
-        textContent={'Loading...'}
+        textContent={wordingContext.wording.modal.loading}
         textStyle={{ color: theme.white }}
       />
 
-      <SettingModal modalVisible={modalVisible} setVisibility={setVisibility} />
+      <SettingModal />
+
+      <ErrorModal />
     </Container>
   );
 };

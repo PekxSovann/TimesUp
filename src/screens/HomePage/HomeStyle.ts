@@ -1,10 +1,11 @@
 import styled from 'styled-components/native';
 
+import TextInput from 'components/TextInput';
+
 import { SelectionButtonProps } from 'types';
+
 import theme from 'static/theme';
 import scale from 'static/scale';
-
-import TextInput from 'components/TextInput';
 
 const Container = styled.View`
   background-color: ${theme.background};
@@ -42,8 +43,6 @@ const ButtonContainer = styled.View`
 
 const ListContainer = styled.View`
   flex: 0.45;
-  margin-left: ${`${scale(5)}px`};
-  margin-right: ${`${scale(5)}px`};
   height: ${`${scale(200)}px`};
   margin-top: ${`${scale(3)}px`};
 `;
@@ -69,9 +68,11 @@ const CustomTextInput = styled(TextInput)`
 `;
 
 const ListItem = styled.View`
+  margin-left: ${`${scale(10)}px`};
+  margin-right: ${`${scale(10)}px`};
   height: ${`${scale(60)}px`};
   background-color: ${theme.lightGrey};
-  margin-top: ${`${scale(3)}px`};
+  margin-bottom: ${`${scale(3)}px`};
   border-radius: ${`${scale(10)}px`};
   flex-direction: row;
   justify-content: space-between;
