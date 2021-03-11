@@ -1,6 +1,6 @@
 import React, { useContext, useState } from 'react';
 
-import InGameHeader from 'components/InGameHeader';
+import IGHeader from 'components/InGameHeader';
 import QuitGameModal from 'components/QuitGameModal';
 
 import GameContext from 'hooks/game';
@@ -9,46 +9,45 @@ import {
   Container,
   GameContainer,
   MainContainer,
-} from './TeamGameStyle';
-import LeftInfo from './LeftInfos';
+} from './SoloGameStyle';
+import LeftInfo from './LeftInfo';
 import RightButtons from './RightButtons';
 import StartingRound from './StartingRound';
-import Game from './Game';
 import Ranking from './Ranking';
+import Game from './Game';
 
-const TeamGame = (): JSX.Element => {
+const SoloGame = (): JSX.Element => {
   const gameContext = useContext(GameContext);
   const [currentWord, setCurrentWord] = useState(0);
   const [start, setStarts] = useState(false);
 
   const mainContainerDisplay = (): JSX.Element => {
-    if (!gameContext.game.roundStart && !gameContext.game.displayRanking)
+    if (!gameContext.solo.roundStart && !gameContext.solo.displayRanking)
       return <StartingRound start={start} setStarts={setStarts} />
-    if (!gameContext.game.roundStart && gameContext.game.displayRanking)
+    if (!gameContext.solo.roundStart && gameContext.solo.displayRanking)
       return <Ranking setStart={setStarts} />
     return <Game resetWord={resetWord} currentWord={currentWord} setCurrentWord={setCurrentWord} />
   }
 
   const resetWord = (): void => {
     let newPool: string[] = []
-    let teams: number = 0;
 
-    for (let i = 0; i < gameContext.game.gameWords.length; i++)
-        newPool.push(gameContext.game.gameWords[i]);
+    for (let i = 0; i < gameContext.solo.gameWords.length; i++)
+        newPool.push(gameContext.solo.gameWords[i]);
     for (var i = newPool.length - 1; i > 0; i--) {
       let j = Math.floor(Math.random() * (i + 1));
       let temp = newPool[i];
       newPool[i] = newPool[j];
       newPool[j] = temp;
     }
-    teams = (gameContext.game.currentTeam + 1) % gameContext.game.numberOfTeam;
-    gameContext.setGame({
-      ...gameContext.game,
+    gameContext.setSolo({
+      ...gameContext.solo,
       wordToFind: newPool,
-      currentTeam: teams,
+      clueGiver: (gameContext.solo.clueGiver + 1) % gameContext.solo.players.length,
+      currentPlayer: (gameContext.solo.currentPlayer + 1) % gameContext.solo.players.length,
       currentWord: 0,
-      round: gameContext.game.round + 1,
-      roundStart: !gameContext.game.roundStart,
+      round: gameContext.solo.round + 1,
+      roundStart: !gameContext.solo.roundStart,
       displayRanking: true,
     });
     setCurrentWord(0);
@@ -56,7 +55,7 @@ const TeamGame = (): JSX.Element => {
 
   return (
     <Container>
-      <InGameHeader />
+      <IGHeader isSolo />
 
       <GameContainer>
         <LeftInfo />
@@ -73,4 +72,4 @@ const TeamGame = (): JSX.Element => {
   );
 };
 
-export default TeamGame;
+export default SoloGame;

@@ -43,7 +43,19 @@ const QuitGameModal = (): JSX.Element => {
       displayRanking: false,
       gameWords: [],
       wordToFind: [],
-      wordInArray: 0,
+    });
+    gameContext.setSolo({
+      chrono: 10,
+      words: 20,
+      currentWord: 0,
+      players: [],
+      round: 0,
+      roundStart: false,
+      displayRanking: false,
+      gameWords: [],
+      wordToFind: [],
+      currentPlayer: 0,
+      clueGiver: 0,
     })
   }
 

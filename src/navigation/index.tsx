@@ -12,6 +12,7 @@ import TeamVerification from 'screens/TeamVerification'
 import SoloSettings from 'screens/SoloSettings';
 import Rules from 'screens/Rules';
 import TeamGame from 'screens/TeamGame';
+import SoloGame from 'screens/SoloGame';
 
 const Stack = createStackNavigator();
 const HomeStack = createStackNavigator();
@@ -52,6 +53,7 @@ const GameNavigationContainer = () => {
       screenOptions={{ headerShown: false }}
     >
       <GameStack.Screen name="TeamGame" component={TeamGame} />
+      <GameStack.Screen name="SoloGame" component={SoloGame} />
     </GameStack.Navigator>
   );
 };

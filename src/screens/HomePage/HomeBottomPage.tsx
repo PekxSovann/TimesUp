@@ -87,13 +87,13 @@ const HomeBottomPage = (props): JSX.Element => {
 
       <PlayContainer>
         <LinearGradientButton
-          onPress={() => {
-            // if (playersContext.playerList.length > 3)
+          onPress={(): void => {
+            if (playersContext.playerList.length > 3)
               navigation.navigate('GameChoice');
-            // else {
-            //   modalContext.setErrorMessage(wordingContext.wording.errors.player);
-            //   modalContext.setErrorVisibility(true);
-            // }
+            else {
+              modalContext.setErrorMessage(wordingContext.wording.errors.player);
+              modalContext.setErrorVisibility(true);
+            }
           }}
           style={style}
           textProps={textProps}

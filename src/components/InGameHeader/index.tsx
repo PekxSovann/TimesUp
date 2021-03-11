@@ -26,10 +26,15 @@ const PreGameHeader = (props: IGHeader): JSX.Element => {
   const {
     isSolo = false,
   } = props;
-  const navigation = useNavigation();
   const modalContext = useContext(ModalContext);
   const gameContext = useContext(GameContext);
   const wordingContext = useContext(WordingContext);
+
+  const getSubTitle = (): SizeType => {
+    if (isSolo)
+      return gameContext.solo.roundStart ? SizeType.MEDIUM : SizeType.BIG
+    return gameContext.game.roundStart ? SizeType.MEDIUM : SizeType.BIG
+  }
 
   return (
     <Container>
@@ -38,23 +43,41 @@ const PreGameHeader = (props: IGHeader): JSX.Element => {
       </LogoContainer>
 
       <TitleContainer>
-        <Text
-          font={ElementType.BOLD}
-          size={gameContext.game.roundStart ? SizeType.MEDIUM : SizeType.BIG}
-        >
-          {isSolo ? `${wordingContext.wording.preGame.soloTitle}: Round ${gameContext.game.round + 1}` : `Round ${gameContext.game.round + 1}`}
-        </Text>
+        {(!isSolo && !gameContext.game.displayRanking || (isSolo && !gameContext.solo.displayRanking)) && (
+          <Text
+            font={ElementType.BOLD}
+            size={gameContext.game.roundStart ? SizeType.MEDIUM : SizeType.BIG}
+          >
+            {isSolo ? `${wordingContext.wording.preGame.soloTitle}: Round ${gameContext.solo.round + 1}` : `Round ${gameContext.game.round + 1}`}
+          </Text>
+        )}
 
-        {gameContext.game.roundStart && (
+        {((!isSolo && gameContext.game.displayRanking) || (isSolo && gameContext.solo.displayRanking)) && (
+          <Text
+            font={ElementType.BOLD}
+            size={getSubTitle()}
+          >
+            {((!isSolo && gameContext.game.round >= 3) || (isSolo && gameContext.solo.round >= 3)) ? (
+              wordingContext.wording.gameSettings.final
+            ) :(
+              isSolo ? `${wordingContext.wording.preGame.soloTitle}: Round ${gameContext.solo.round + 1}` : `Round ${gameContext.game.round}`
+            )}
+          </Text>
+        )}
+
+        {((!isSolo && gameContext.game.roundStart) || (isSolo && gameContext.solo.roundStart)) && (
           <Text
             font={ElementType.BOLD}
             size={SizeType.NORMAL}
           >
-            {`${wordingContext.wording.gameSettings.word}: ${gameContext.game.currentWord + 1}/${gameContext.game.words}`}
+            {isSolo ?
+            `${wordingContext.wording.gameSettings.word}: ${gameContext.solo.currentWord + 1}/${gameContext.solo.words}`
+            : `${wordingContext.wording.gameSettings.word}: ${gameContext.game.currentWord + 1}/${gameContext.game.words}`}
           </Text>
         )}
 
-        {gameContext.game.displayRanking && (
+        {((!isSolo && gameContext.game.displayRanking && gameContext.game.round < 3)
+        || (isSolo && gameContext.solo.displayRanking && gameContext.solo.round < 3)) && (
           <Text
             font={ElementType.BOLD}
             size={SizeType.NORMAL}

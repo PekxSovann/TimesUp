@@ -8,10 +8,10 @@ import Text from 'components/Text';
 import LinearGradientButton from 'components/GradientButton';
 import { style, textProps, gradientStyle } from 'components/SettingModal/SettingModalStyle';
 
-import { ElementType, SizeType } from 'types';
+import { ElementType, SizeType, Player } from 'types';
 
 import WordingContext from 'hooks/wording';
-import GameContext, { Teams } from 'hooks/game';
+import GameContext from 'hooks/game';
 
 import scale from 'static/scale';
 import theme from 'static/theme';
@@ -19,7 +19,7 @@ import theme from 'static/theme';
 import {
   PlayContainer,
   BottomContainer,
-} from './TeamGameStyle';
+} from './SoloGameStyle';
 
 interface Ranks {
   setStart: React.Dispatch<React.SetStateAction<boolean>>;
@@ -49,21 +49,21 @@ const Ranking = (props: Ranks): JSX.Element => {
   const gameContext = useContext(GameContext);
   const wordingContext = useContext(WordingContext);
 
-  const sortWinner = (): Teams[] => {
-    let tmp: Teams[] = [];
+  const sortWinner = (): Player[] => {
+    let tmp: Player[] = [];
 
-    for (let i = 0; i < gameContext.game.teams.length; i++)
-      tmp.push(JSON.parse(JSON.stringify(gameContext.game.teams[i])));
+    for (let i = 0; i < gameContext.solo.players.length; i++)
+      tmp.push(JSON.parse(JSON.stringify(gameContext.solo.players[i])));
     tmp.sort((a, b) => b.points - a.points);
     return tmp;
   }
 
   const playNextRound = (): void => {
     setStart(true);
-    gameContext.setGame({ ...gameContext.game, displayRanking: false })
+    gameContext.setSolo({ ...gameContext.solo, displayRanking: false })
   }
 
-  const ranks: Teams[] = sortWinner();
+  const ranks: Player[] = sortWinner();
   const rank = [
     wordingContext.wording.pos.first,
     wordingContext.wording.pos.second,
@@ -76,7 +76,7 @@ const Ranking = (props: Ranks): JSX.Element => {
       <PlayContainer>
         <FlatList
           data={ranks}
-          keyExtractor={item => (item.number + item.points).toString()}
+          keyExtractor={item => (item.name + item.points).toString()}
           renderItem={({ item, index }): JSX.Element => (
             <ListItem>
               <Text
@@ -93,7 +93,7 @@ const Ranking = (props: Ranks): JSX.Element => {
                 size={SizeType.NORMAL}
                 color={theme.black}
               >
-                {`${wordingContext.wording.game.team} ${item.number}`}
+                {item.name}
               </Text>
 
               <Text
@@ -112,29 +112,28 @@ const Ranking = (props: Ranks): JSX.Element => {
       <BottomContainer>
         <LinearGradientButton
           onPress={() => {
-            if (gameContext.game.round >= 3) {
+            if (gameContext.solo.round >= 3) {
               Orientation.lockToPortrait();
               navigation.navigate('Home', { screen: 'Home' });
-              gameContext.setGame({
-                teams: [],
-                chrono: 60,
-                words: 20,
+              gameContext.setSolo({
+                chrono: 0,
+                words: 0,
                 currentWord: 0,
+                players: [],
                 round: 0,
-                numberOfTeam: 2,
-                memberPerTeam: 2,
                 roundStart: false,
-                currentTeam: 0,
                 displayRanking: false,
                 gameWords: [],
                 wordToFind: [],
+                currentPlayer: 0,
+                clueGiver: 0,
               })
             } else playNextRound()
           }}
           style={style}
           textProps={textProps}
           gradientStyle={gradientStyle}
-          label={gameContext.game.round >= 3 ? wordingContext.wording.buttons.end : wordingContext.wording.buttons.next}
+          label={gameContext.solo.round >= 3 ? wordingContext.wording.buttons.end : wordingContext.wording.buttons.next}
         />
       </BottomContainer>
     </>

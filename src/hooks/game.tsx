@@ -12,7 +12,8 @@ interface ISoloGame {
   displayRanking: boolean;
   gameWords: string[];
   wordToFind: string[];
-  wordInArray: number; /// -----> ?????
+  currentPlayer: number;
+  clueGiver: number;
 }
 
 export interface Teams {
@@ -34,12 +35,13 @@ interface IGame {
   currentTeam: number;
   gameWords: string[];
   wordToFind: string[];
-  wordInArray: number; /// -----> ?????
 }
 
 export interface GameProps {
   game: IGame;
   solo: ISoloGame;
+  isSolo: boolean;
+  setMode: React.Dispatch<React.SetStateAction<boolean>>;
   setGame: React.Dispatch<React.SetStateAction<IGame>>;
   setSolo: React.Dispatch<React.SetStateAction<ISoloGame>>;
 }
@@ -55,7 +57,8 @@ const GameContext = createContext<GameProps>({
     displayRanking: false,
     gameWords: [],
     wordToFind: [],
-    wordInArray: 0,
+    currentPlayer: 0,
+    clueGiver: 0,
   },
   game: {
     teams: [],
@@ -70,10 +73,11 @@ const GameContext = createContext<GameProps>({
     displayRanking: false,
     gameWords: [],
     wordToFind: [],
-    wordInArray: 0,
   },
+  isSolo: false,
   setSolo: () => {},
   setGame: () => {},
+  setMode: () => {},
 })
 
 export const useGame = (): GameProps => {
@@ -85,7 +89,6 @@ export const useGame = (): GameProps => {
     currentTeam: 0,
     numberOfTeam: 0,
     memberPerTeam: 0,
-    wordInArray: 0,
     roundStart: false,
     displayRanking: false,
     teams: [],
@@ -96,17 +99,19 @@ export const useGame = (): GameProps => {
     round: 0,
     words: 0,
     chrono: 0,
-    wordInArray: 0,
     currentWord: 0,
+    currentPlayer: 0,
+    clueGiver: 0,
     roundStart: false,
     displayRanking: false,
     players: [],
     gameWords: [],
     wordToFind: [],
   });
+  const [isSolo, setMode] = useState(false);
 
 
-  return { solo, game, setGame, setSolo };
+  return { solo, game, setGame, setSolo, isSolo, setMode };
 };
 
 export default GameContext;

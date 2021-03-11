@@ -11,6 +11,9 @@ interface Language {
   game: {
     points: string;
     team: string;
+    clueGiver: string;
+    guesser: string;
+    next: string;
   },
   round: {
     firstRule: string;
@@ -25,6 +28,7 @@ interface Language {
     word: string;
     perWord: string;
     ranking: string;
+    final: string;
   },
   preGame: {
     soloTitle: string;
@@ -49,6 +53,7 @@ interface Language {
     no: string;
     skip: string;
     next: string;
+    end: string;
   };
   modal: {
     language: string;
@@ -76,12 +81,12 @@ export interface WordingProps {
 
 const WordingContext = createContext<WordingProps>({
   wording: {
-    game: { team: '', points: '' },
-    gameSettings: { team: '', memberPerTeam: '', chrono: '', word: '', perWord: '', member: '', ranking: '' },
+    game: { team: '', points: '', clueGiver: '', guesser: '', next: '' },
+    gameSettings: { final: '', team: '', memberPerTeam: '', chrono: '', word: '', perWord: '', member: '', ranking: '' },
     preGame: { soloTitle: '', soloDescription: '', gameTitle: '', gameDescription: '' },
     selection: { playerSelect: '', wordSelect: '' },
     input : { inputPlayer: '', inputWord: '' },
-    buttons: { play: '', rules: '', quit: '', create: '', yes: '', no: '', skip: '', next: '' },
+    buttons: { end: '', play: '', rules: '', quit: '', create: '', yes: '', no: '', skip: '', next: '' },
     modal: { language: '', default: '', loading: '', error: '', quit: '' },
     errors: { player: '' },
     round: { firstRule: '', secondRule: '', lastRule: '' },
