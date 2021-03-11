@@ -1,4 +1,6 @@
-import React, { useEffect } from 'react';
+import React, { useContext } from 'react';
+
+import LinearGradientButton from 'components/GradientButton';
 
 import { ElementType, SizeType, Player } from 'types';
 
@@ -7,7 +9,9 @@ import scale from 'static/scale';
 
 import Add from 'assets/AddButton.svg';
 
-import LinearGradientButton from 'components/GradientButton';
+import useModal from 'hooks/modal';
+import useWording from 'hooks/wording';
+import usePlayers from 'hooks/players';
 
 import {
   AddInputContainer,
@@ -53,16 +57,15 @@ const HomeBottomPage = (props): JSX.Element => {
     addWord,
     navigation,
   } = props;
-  const placeHolder = {
-    player: 'Add a player...',
-    word: 'Add a new word...',
-  };
+  const wordingContext = useContext(useWording);
+  const playersContext = useContext(usePlayers);
+  const modalContext = useContext(useModal);
 
   return (
     <>
       <AddInputContainer>
         <CustomTextInput
-          placeholder={placeHolder[selection ? 'player' : 'word']}
+          placeholder={selection ? wordingContext.wording.input.inputPlayer : wordingContext.wording.input.inputWord}
           placeholderTextColor={theme.placeholder}
           placeholderStyle={{ fontFamily: 'Dosis-SemiBold', fontSize: scale(24) }}
           defaultValue={input}
@@ -71,9 +74,11 @@ const HomeBottomPage = (props): JSX.Element => {
 
         <ButtonContainer>
           <AddButton onPress={(): void => {
-            selection ? addPlayer({ name: input, points: 0 })
-            : addWord(input);
-            setInput('');
+            if (input !== '') {
+              selection ? addPlayer({ name: input, points: 0 })
+              : addWord(input);
+              setInput('');
+            }
           }}>
             <Add />
           </AddButton>
@@ -82,11 +87,18 @@ const HomeBottomPage = (props): JSX.Element => {
 
       <PlayContainer>
         <LinearGradientButton
-          onPress={() => navigation.navigate('GameChoice')}
+          onPress={() => {
+            // if (playersContext.playerList.length > 3)
+              navigation.navigate('GameChoice');
+            // else {
+            //   modalContext.setErrorMessage(wordingContext.wording.errors.player);
+            //   modalContext.setErrorVisibility(true);
+            // }
+          }}
           style={style}
           textProps={textProps}
           gradientStyle={gradientStyle}
-          label="PLAY"
+          label={wordingContext.wording.buttons.play}
         />
       </PlayContainer>
     </>

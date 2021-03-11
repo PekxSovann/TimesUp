@@ -12,3 +12,7 @@ export interface GradientButtonProps {
   textProps: TextProps;
   label: string;
 };
+
+export interface FlagButtonProps {
+  isSelected: boolean;
+}

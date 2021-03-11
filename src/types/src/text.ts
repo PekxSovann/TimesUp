@@ -20,6 +20,9 @@ export enum ElementType {
 };
 
 export enum SizeType {
+  VERYSMALL = 8,
+  SMALL = 18,
   NORMAL = 24,
+  MEDIUM = 30,
   BIG = 36,
 }

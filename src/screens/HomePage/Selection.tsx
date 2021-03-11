@@ -1,8 +1,10 @@
-import React from 'react';
+import React, { useContext } from 'react';
+
+import Text from 'components/Text';
 
 import { ElementType, SizeType } from 'types';
 
-import Text from 'components/Text';
+import useWording from 'hooks/wording';
 
 import {
   SelectionContainer,
@@ -17,6 +19,7 @@ export interface SelectionProps {
 
 const Selection = (props: SelectionProps): JSX.Element => {
   const { selection, setSelection, setInput } = props;
+  const wordingContext = useContext(useWording);
 
   return (
     <SelectionContainer>
@@ -31,7 +34,7 @@ const Selection = (props: SelectionProps): JSX.Element => {
           font={ElementType.BOLD}
           size={SizeType.BIG}
         >
-          Players
+          {wordingContext.wording.selection.playerSelect}
         </Text>
       </SelectionButton>
 
@@ -46,7 +49,7 @@ const Selection = (props: SelectionProps): JSX.Element => {
           font={ElementType.BOLD}
           size={SizeType.BIG}
         >
-          Add words
+          {wordingContext.wording.selection.wordSelect}
         </Text>
       </SelectionButton>
     </SelectionContainer>
