@@ -31,7 +31,6 @@ const RightButtons = (props: ButtonsProps): JSX.Element => {
       ...gameContext.solo,
       clueGiver: (gameContext.solo.clueGiver + 1) % gameContext.solo.players.length,
       currentPlayer: (gameContext.solo.currentPlayer + 1) % gameContext.solo.players.length,
-      currentWord: 0,
       roundStart: !gameContext.solo.roundStart,
       displayRanking: true,
       players: playerBulk
@@ -41,7 +40,7 @@ const RightButtons = (props: ButtonsProps): JSX.Element => {
 
   const getNextPlayer = (): number => {
     if ((gameContext.solo.currentPlayer + 1) % gameContext.solo.players.length === gameContext.solo.clueGiver)
-      return ((gameContext.solo.currentPlayer + 1) % gameContext.solo.players.length) + 1;
+      return ((gameContext.solo.currentPlayer + 2) % gameContext.solo.players.length);
     return (gameContext.solo.currentPlayer + 1) % gameContext.solo.players.length;
   }
 
@@ -51,7 +50,8 @@ const RightButtons = (props: ButtonsProps): JSX.Element => {
 
     for (let i = 0; i < gameContext.solo.players.length; i++)
       playerBulk.push(gameContext.solo.players[i]);
-    playerBulk[gameContext.solo.currentPlayer].points++;
+    playerBulk[gameContext.solo.currentPlayer].points += 1.5;
+    playerBulk[gameContext.solo.clueGiver].points++;
     for (let i = 0; i < gameContext.solo.wordToFind.length; i++)
       tmp.push(gameContext.solo.wordToFind[i]);
     tmp.splice(currentWord, 1);

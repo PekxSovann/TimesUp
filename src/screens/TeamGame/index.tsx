@@ -1,4 +1,6 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
+import Orientation from 'react-native-orientation-locker';
+import { BackHandler } from 'react-native';
 
 import InGameHeader from 'components/InGameHeader';
 import QuitGameModal from 'components/QuitGameModal';
@@ -53,6 +55,13 @@ const TeamGame = (): JSX.Element => {
     });
     setCurrentWord(0);
   }
+
+  useEffect(() => {
+    Orientation.lockToLandscape();
+    BackHandler.addEventListener('hardwareBackPress', () => true)
+      return () =>
+        BackHandler.removeEventListener('hardwareBackPress', () => true)
+  }, []);
 
   return (
     <Container>

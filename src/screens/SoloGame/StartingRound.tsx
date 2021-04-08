@@ -42,7 +42,7 @@ const StartingRound = (props: Start): JSX.Element => {
             size={scale(125)}
             style={{ height: '50', width: '50' }}
             isPlaying
-            duration={10}
+            duration={5}
             trailColor={theme.grey}
             colors={theme.white}
             onComplete={() => {

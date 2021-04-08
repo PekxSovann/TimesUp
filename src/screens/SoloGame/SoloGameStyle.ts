@@ -67,6 +67,7 @@ const Incorrect = styled(IncorrectSvg)``;
 
 const PlayContainer = styled.View`
   flex: 0.7;
+  margin-top: ${scale(5)}px;
   justify-content: center;
   align-items: center;
 `;

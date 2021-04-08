@@ -9,9 +9,7 @@ import scale from 'static/scale';
 
 import Add from 'assets/AddButton.svg';
 
-import useModal from 'hooks/modal';
 import useWording from 'hooks/wording';
-import usePlayers from 'hooks/players';
 
 import {
   AddInputContainer,
@@ -34,7 +32,7 @@ const gradientStyle = {
   alignItems: 'center',
 };
 const textProps = {
-  size: SizeType.BIG,
+  size: SizeType.MEDIUM,
   color: theme.black,
   font: ElementType.SEMIBOLD,
 }
@@ -58,8 +56,6 @@ const HomeBottomPage = (props): JSX.Element => {
     navigation,
   } = props;
   const wordingContext = useContext(useWording);
-  const playersContext = useContext(usePlayers);
-  const modalContext = useContext(useModal);
 
   return (
     <>
@@ -87,14 +83,7 @@ const HomeBottomPage = (props): JSX.Element => {
 
       <PlayContainer>
         <LinearGradientButton
-          onPress={(): void => {
-            if (playersContext.playerList.length > 3)
-              navigation.navigate('GameChoice');
-            else {
-              modalContext.setErrorMessage(wordingContext.wording.errors.player);
-              modalContext.setErrorVisibility(true);
-            }
-          }}
+          onPress={(): void => { navigation.navigate('GameChoice'); }}
           style={style}
           textProps={textProps}
           gradientStyle={gradientStyle}

@@ -63,7 +63,9 @@ const SoloSettings = (): JSX.Element => {
       wordToFind,
       players: players,
     });
-    navigation.navigate('Game', { screen: 'SoloGame' });
+    navigation.navigate('WordSelection', {
+      option: 'solo',
+    });
   };
 
   return (
@@ -96,7 +98,7 @@ const SoloSettings = (): JSX.Element => {
           style={style}
           textProps={textProps}
           gradientStyle={gradientStyle}
-          label={wordingContext.wording.buttons.play}
+          label={wordingContext.wording.buttons.word}
         />
       </ButtonContainer>
     </Container>

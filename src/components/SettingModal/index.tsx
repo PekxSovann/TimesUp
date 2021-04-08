@@ -1,7 +1,6 @@
 import React, { useContext, useEffect, useState } from 'react';
 import Modal from 'react-native-modal';
 import Spinner from 'react-native-loading-spinner-overlay';
-import { useNavigation } from '@react-navigation/native';
 
 import LinearGradientButton from 'components/GradientButton';
 
@@ -20,9 +19,6 @@ import {
   FlagFrench,
   FlagEnglish,
   FlagButton,
-  DefaultWords,
-  CustomCheckBox,
-  DefaultText,
   style,
   gradientStyle,
   textProps,
@@ -30,7 +26,6 @@ import {
 } from './SettingModalStyle';
 
 const SettingModal = (): JSX.Element => {
-  const navigation = useNavigation();
   const wordingContext = useContext(useWording);
   const modalContext = useContext(useModal);
   const wordsContext = useContext(useWords);
@@ -60,6 +55,7 @@ const SettingModal = (): JSX.Element => {
             disabled={wordingContext.language === 'english'}
             onPress={() => {
               wordingContext.changeLanguage('english');
+              wordsContext.changeLanguage('english');
               setLoader(true);
             }}
           >
@@ -70,6 +66,7 @@ const SettingModal = (): JSX.Element => {
             disabled={wordingContext.language === 'french'}
             onPress={() => {
               wordingContext.changeLanguage('french');
+              wordsContext.changeLanguage('french');
               setLoader(true);
             }}
           >
@@ -77,7 +74,7 @@ const SettingModal = (): JSX.Element => {
           </FlagButton>
         </FlagContainer>
 
-        <DefaultWords>
+        {/* <DefaultWords>
           <DefaultText
             color={theme.black}
             size={SizeType.NORMAL}
@@ -95,10 +92,10 @@ const SettingModal = (): JSX.Element => {
             value={wordsContext.useDefaultWords}
             onValueChange={(newValue) => wordsContext.setDefaultWord(newValue)}
           />
-        </DefaultWords>
+        </DefaultWords> */}
 
         <ButtonContainer>
-          <LinearGradientButton
+          {/* <LinearGradientButton
             onPress={() => {
               modalContext.setVisibility(false);
               navigation.navigate('Rules');
@@ -107,7 +104,7 @@ const SettingModal = (): JSX.Element => {
             textProps={textProps}
             gradientStyle={gradientStyle}
             label={wordingContext.wording.buttons.rules}
-          />
+          /> */}
 
           <LinearGradientButton
             onPress={() => modalContext.setVisibility(false)}

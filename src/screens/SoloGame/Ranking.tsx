@@ -11,6 +11,7 @@ import { style, textProps, gradientStyle } from 'components/SettingModal/Setting
 import { ElementType, SizeType, Player } from 'types';
 
 import WordingContext from 'hooks/wording';
+import PlayersContext from 'hooks/players';
 import GameContext from 'hooks/game';
 
 import scale from 'static/scale';
@@ -48,6 +49,7 @@ const Ranking = (props: Ranks): JSX.Element => {
   const navigation = useNavigation();
   const gameContext = useContext(GameContext);
   const wordingContext = useContext(WordingContext);
+  const playerContext = useContext(PlayersContext);
 
   const sortWinner = (): Player[] => {
     let tmp: Player[] = [];
@@ -112,9 +114,9 @@ const Ranking = (props: Ranks): JSX.Element => {
       <BottomContainer>
         <LinearGradientButton
           onPress={() => {
-            if (gameContext.solo.round >= 3) {
+            if (gameContext.solo.round >= 2) {
               Orientation.lockToPortrait();
-              navigation.navigate('Home', { screen: 'Home' });
+              navigation.navigate('Home');
               gameContext.setSolo({
                 chrono: 0,
                 words: 0,
@@ -127,13 +129,14 @@ const Ranking = (props: Ranks): JSX.Element => {
                 wordToFind: [],
                 currentPlayer: 0,
                 clueGiver: 0,
-              })
+              });
+              playerContext.resetPlayersPoint();
             } else playNextRound()
           }}
           style={style}
           textProps={textProps}
           gradientStyle={gradientStyle}
-          label={gameContext.solo.round >= 3 ? wordingContext.wording.buttons.end : wordingContext.wording.buttons.next}
+          label={gameContext.solo.round >= 2 ? wordingContext.wording.buttons.end : wordingContext.wording.buttons.next}
         />
       </BottomContainer>
     </>

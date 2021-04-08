@@ -12,7 +12,7 @@ import FrenchFlag from 'assets/FrenchFlag.svg';
 import Text from 'components/Text';
 
 const Container = styled.View`
-  flex: 0.5;
+  flex: 0.35;
   background-color: #fff;
   border-radius: ${scale(10)}px;
 `;
@@ -20,7 +20,7 @@ const Container = styled.View`
 const ButtonContainer = styled.View`
   flex: 1;
   align-items: center;
-  justify-content: space-evenly;
+  justify-content: center;
 `;
 
 const ModalText = styled(Text)`
@@ -77,7 +77,7 @@ const gradientStyle = {
   alignItems: 'center',
 };
 const textProps = {
-  size: SizeType.BIG,
+  size: SizeType.MEDIUM,
   color: theme.black,
   font: ElementType.SEMIBOLD,
 }

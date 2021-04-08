@@ -57,7 +57,7 @@ const PreGameHeader = (props: IGHeader): JSX.Element => {
             font={ElementType.BOLD}
             size={getSubTitle()}
           >
-            {((!isSolo && gameContext.game.round >= 3) || (isSolo && gameContext.solo.round >= 3)) ? (
+            {((!isSolo && gameContext.game.round >= 3) || (isSolo && gameContext.solo.round >= 2)) ? (
               wordingContext.wording.gameSettings.final
             ) :(
               isSolo ? `${wordingContext.wording.preGame.soloTitle}: Round ${gameContext.solo.round + 1}` : `Round ${gameContext.game.round}`

@@ -43,7 +43,8 @@
       "no": "NON",
       "skip": "PASSER",
       "next": "PROCHAIN ROUND",
-      "end": "TERMINER"
+      "end": "TERMINER",
+      "word": "LIST DES MOTS"
     },
     "modal": {
       "language" : "Langue",
@@ -53,13 +54,17 @@
       "quit": "Voulez-vous quitter la partie?"
     },
     "errors": {
-      "player": "Vous n'avez pas assez de joueurs pour jouer, veuillez créer au moins 4 joueurs."
+      "player": "Vous n'avez pas assez de joueurs pour jouer, veuillez créer au moins 4 joueurs.",
+      "soloPlayer": "Vous n'avez pas assez de joueurs pour jouer, veuillez créer au moins 3 joueurs."
     },
     "pos": {
       "first": "er",
       "second": "ème",
       "third": "ème",
       "other": "ème"
+    },
+    "wordSettings": {
+      "title": "Liste de mots"
     }
   },
   "english": {
@@ -108,7 +113,8 @@
       "no": "NO",
       "skip": "SKIP",
       "next": "NEXT ROUND",
-      "end": "FINISH"
+      "end": "FINISH",
+      "word": "WORD LIST"
     },
     "modal": {
       "language" : "Language",
@@ -118,13 +124,17 @@
       "quit": "Do you want to leave the game?"
     },
     "errors": {
-      "player": "You don't have enough players, please create at least 4 players."
+      "player": "You don't have enough players, please create at least 4 players.",
+      "soloPlayer": "You don't have enough players, please create at least 3 players."
     },
     "pos": {
       "first": "st",
       "second": "nd",
       "third": "rd",
       "other": "th"
+    },
+    "wordSettings": {
+      "title": "Word List"
     }
   }
 }

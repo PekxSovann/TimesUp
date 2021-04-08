@@ -50,7 +50,7 @@ const TeamVerification = (): JSX.Element => {
       wordToFind.push(wordsContext.wordList[random]);
     }
     gameContext.setGame({ ...gameContext.game, gameWords: tmp, wordToFind });
-    navigation.navigate('Game', { screen: 'TeamGame' });
+    navigation.navigate('TeamGame');
   }
 
   return (

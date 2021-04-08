@@ -1,4 +1,5 @@
 import styled from 'styled-components/native';
+import { Dimensions } from 'react-native';
 
 import TextInput from 'components/TextInput';
 
@@ -10,16 +11,18 @@ import scale from 'static/scale';
 const Container = styled.View`
   background-color: ${theme.background};
   flex: 1;
+  height: ${Dimensions.get('window').height}px;
 `;
 
 const LogoContainer = styled.View`
   justify-content: center;
   align-items: center;
-  height: ${`${scale(150)}px`};
+  height: ${Dimensions.get('window').height / 5}px;
 `;
 
 const SelectionContainer = styled.View`
   flex: 0.15;
+  height: ${Dimensions.get('window').height / 9}px;
   flex-direction: row;
   justify-content: space-evenly;
   align-items: center;
@@ -42,21 +45,21 @@ const ButtonContainer = styled.View`
 `;
 
 const ListContainer = styled.View`
-  flex: 0.45;
-  height: ${`${scale(200)}px`};
+  flex-basis: 0.45;
+  height: ${Dimensions.get('window').height / 2.75}px;
   margin-top: ${`${scale(3)}px`};
 `;
 
 const AddInputContainer = styled.View`
   flex: 0.1;
-  min-height: ${`${scale(60)}px`};
+  height: ${Dimensions.get('window').height / 11}px;
   background-color: ${theme.white};
   flex-direction: row;
 `;
 
 const PlayContainer = styled.View`
   flex: 0.2;
-  min-height: ${`${scale(85)}px`};
+  height: ${Dimensions.get('window').height / 10}px;
   justify-content: center;
   align-items: center;
 `;
@@ -80,7 +83,8 @@ const ListItem = styled.View`
 `;
 
 const RemoveButton = styled.TouchableOpacity`
-  flex: 0.1;
+  height: ${`${scale(20)}px`};
+  width: ${`${scale(20)}px`};
   margin-right: ${`${scale(10)}px`};
 `;
 

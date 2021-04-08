@@ -54,6 +54,7 @@ interface Language {
     skip: string;
     next: string;
     end: string;
+    word: string;
   };
   modal: {
     language: string;
@@ -64,12 +65,16 @@ interface Language {
   };
   errors: {
     player: string;
+    soloPlayer: string;
   };
   pos: {
     first: string;
     second: string;
     third: string;
     other: string;
+  };
+  wordSettings: {
+    title: string
   };
 }
 
@@ -86,11 +91,12 @@ const WordingContext = createContext<WordingProps>({
     preGame: { soloTitle: '', soloDescription: '', gameTitle: '', gameDescription: '' },
     selection: { playerSelect: '', wordSelect: '' },
     input : { inputPlayer: '', inputWord: '' },
-    buttons: { end: '', play: '', rules: '', quit: '', create: '', yes: '', no: '', skip: '', next: '' },
+    buttons: { word: '', end: '', play: '', rules: '', quit: '', create: '', yes: '', no: '', skip: '', next: '' },
     modal: { language: '', default: '', loading: '', error: '', quit: '' },
-    errors: { player: '' },
+    errors: { player: '', soloPlayer: '' },
     round: { firstRule: '', secondRule: '', lastRule: '' },
-    pos: { first: '', second: '', third: '', other: '' }
+    pos: { first: '', second: '', third: '', other: '' },
+    wordSettings: { title: '' }
   },
   changeLanguage: () => {},
   language: 'english',

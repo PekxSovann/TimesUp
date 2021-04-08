@@ -12,6 +12,7 @@ import { ElementType, SizeType } from 'types';
 
 import WordingContext from 'hooks/wording';
 import GameContext, { Teams } from 'hooks/game';
+import PlayersContext from 'hooks/players';
 
 import scale from 'static/scale';
 import theme from 'static/theme';
@@ -48,6 +49,7 @@ const Ranking = (props: Ranks): JSX.Element => {
   const navigation = useNavigation();
   const gameContext = useContext(GameContext);
   const wordingContext = useContext(WordingContext);
+  const playerContext = useContext(PlayersContext);
 
   const sortWinner = (): Teams[] => {
     let tmp: Teams[] = [];
@@ -114,7 +116,7 @@ const Ranking = (props: Ranks): JSX.Element => {
           onPress={() => {
             if (gameContext.game.round >= 3) {
               Orientation.lockToPortrait();
-              navigation.navigate('Home', { screen: 'Home' });
+              navigation.navigate('Home');
               gameContext.setGame({
                 teams: [],
                 chrono: 60,
@@ -129,6 +131,7 @@ const Ranking = (props: Ranks): JSX.Element => {
                 gameWords: [],
                 wordToFind: [],
               })
+              playerContext.resetPlayersPoint();
             } else playNextRound()
           }}
           style={style}

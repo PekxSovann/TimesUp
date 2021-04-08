@@ -10,6 +10,8 @@ import { SizeType, ElementType } from 'types';
 import theme from 'static/theme';
 
 import WordingContext from 'hooks/wording';
+import useModal from 'hooks/modal';
+import usePlayers from 'hooks/players';
 
 import {
   Container,
@@ -20,6 +22,8 @@ import {
 const GameChoice = (): JSX.Element => {
   const navigation = useNavigation();
   const wordingContext = useContext(WordingContext);
+  const playersContext = useContext(usePlayers);
+  const modalContext = useContext(useModal);
 
   return (
     <Container>
@@ -44,7 +48,14 @@ const GameChoice = (): JSX.Element => {
         </CustomText>
 
         <LinearGradientButton
-          onPress={() => navigation.navigate('SoloSettings')}
+          onPress={() => {
+            if (playersContext.playerList.length > 2)
+              navigation.navigate('SoloSettings')
+            else {
+              modalContext.setErrorMessage(wordingContext.wording.errors.soloPlayer);
+              modalContext.setErrorVisibility(true);
+            }
+          }}
           style={style}
           textProps={textProps}
           gradientStyle={gradientStyle}
@@ -71,7 +82,14 @@ const GameChoice = (): JSX.Element => {
         </CustomText>
 
         <LinearGradientButton
-          onPress={() => navigation.navigate('GameSettings')}
+          onPress={() => {
+            if (playersContext.playerList.length > 3)
+              navigation.navigate('GameSettings')
+            else {
+              modalContext.setErrorMessage(wordingContext.wording.errors.player);
+              modalContext.setErrorVisibility(true);
+            }
+          }}
           style={style}
           textProps={textProps}
           gradientStyle={gradientStyle}

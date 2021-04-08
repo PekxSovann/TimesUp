@@ -12,7 +12,12 @@ import {
   LogoGame,
 } from './PreGameHeaderStyle';
 
-const PreGameHeader = (): JSX.Element => {
+export interface PreGameHeader {
+  option?: boolean;
+}
+
+const PreGameHeader = (props: PreGameHeader): JSX.Element => {
+  const { option = true } = props;
   const navigation = useNavigation();
   const modalContext = useContext(useModal);
 
@@ -23,9 +28,11 @@ const PreGameHeader = (): JSX.Element => {
       </LogoContainer>
 
       <ButtonContainer>
-        <SettingButton onPress={() => modalContext.setVisibility(true)}>
-          <SettingsLogo width={'100%'} height={'100%'} />
-        </SettingButton>
+        {option && (
+          <SettingButton onPress={() => modalContext.setVisibility(true)}>
+            <SettingsLogo width={'100%'} height={'100%'} />
+          </SettingButton>
+        )}
 
         <SettingButton onPress={() => navigation.goBack()}>
           <QuitLogo width={'100%'} height={'100%'} />

@@ -13,10 +13,10 @@ import SoloSettings from 'screens/SoloSettings';
 import Rules from 'screens/Rules';
 import TeamGame from 'screens/TeamGame';
 import SoloGame from 'screens/SoloGame';
+import WordSelection from 'screens/WordSelection';
 
 const Stack = createStackNavigator();
 const HomeStack = createStackNavigator();
-const GameStack = createStackNavigator();
 
 /**
  * Dashboard Screens
@@ -40,21 +40,10 @@ const HomeNavigationContainer = () => {
       <HomeStack.Screen name="TeamVerification" component={TeamVerification} />
       <HomeStack.Screen name="SoloSettings" component={SoloSettings} />
       <HomeStack.Screen name="Rules" component={Rules} />
+      <HomeStack.Screen name="TeamGame" component={TeamGame} />
+      <HomeStack.Screen name="SoloGame" component={SoloGame} />
+      <HomeStack.Screen name="WordSelection" component={WordSelection} />
     </HomeStack.Navigator>
-  );
-};
-
-const GameNavigationContainer = () => {
-  useEffect(() => {
-    Orientation.lockToLandscape();
-  }, []);
-  return (
-    <GameStack.Navigator
-      screenOptions={{ headerShown: false }}
-    >
-      <GameStack.Screen name="TeamGame" component={TeamGame} />
-      <GameStack.Screen name="SoloGame" component={SoloGame} />
-    </GameStack.Navigator>
   );
 };
 
@@ -65,7 +54,6 @@ export const AppNavigationContainer = () => {
         screenOptions={{ headerShown: false }}
       >
         <Stack.Screen name="Home" component={HomeNavigationContainer} />
-        <Stack.Screen name="Game" component={GameNavigationContainer} />
       </Stack.Navigator>
     </NavigationContainer>
   );

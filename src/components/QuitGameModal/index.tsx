@@ -91,7 +91,7 @@ const QuitGameModal = (): JSX.Element => {
               setTimeout(() => {
                 resetGame();
                 Orientation.lockToPortrait();
-                navigation.navigate('Home', { screen: 'Home' });
+                navigation.navigate('Home');
               }, 300);
             }}
             style={style}

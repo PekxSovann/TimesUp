@@ -18,7 +18,7 @@ const LeftInfo = (): JSX.Element => {
 
   const getNextPlayer = (): number => {
     if ((gameContext.solo.currentPlayer + 1) % gameContext.solo.players.length === gameContext.solo.clueGiver)
-      return ((gameContext.solo.currentPlayer + 1) % gameContext.solo.players.length) + 1;
+      return ((gameContext.solo.currentPlayer + 2) % gameContext.solo.players.length);
     return (gameContext.solo.currentPlayer + 1) % gameContext.solo.players.length;
   }
 

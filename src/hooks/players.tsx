@@ -6,48 +6,18 @@ export interface PlayerHooks {
   playerList: Player[];
   addPlayer: (newPlayer: Player) => void;
   deletePlayer: (index: number) => void;
+  resetPlayersPoint: () => void;
 }
 
 const PlayersContext = createContext<PlayerHooks>({
   playerList: [],
   addPlayer: (newPlayer: Player) => {},
-  deletePlayer: (index: number) => {}
+  deletePlayer: (index: number) => {},
+  resetPlayersPoint: () => {},
 });
 
-
-const TEMP = [
-  {
-    name: "toto",
-    points: 0,
-  },
-  {
-    name: "titi",
-    points: 0,
-  },
-  {
-    name: "tata",
-    points: 0,
-  },
-  {
-    name: "tutu",
-    points: 0,
-  },
-  {
-    name: "tyty",
-    points: 0,
-  },
-  {
-    name: "popo",
-    points: 0,
-  },
-  {
-    name: "papa",
-    points: 0,
-  },
-];
-
 export const usePlayers = (): PlayerHooks => {
-  const [playerList, setPlayerList] = useState<Player[]>(TEMP);
+  const [playerList, setPlayerList] = useState<Player[]>([]);
   const addPlayer = (newPlayer: Player): void => {
     const tmp = playerList;
     tmp.push(newPlayer);
@@ -60,7 +30,12 @@ export const usePlayers = (): PlayerHooks => {
     setPlayerList(tmp);
   };
 
-  return { playerList, addPlayer, deletePlayer };
+  const resetPlayersPoint = (): void => {
+    for (let i = 0; i < playerList.length; i++)
+      playerList[i].points = 0;
+  }
+
+  return { playerList, addPlayer, deletePlayer, resetPlayersPoint };
 }
 
 export default PlayersContext;

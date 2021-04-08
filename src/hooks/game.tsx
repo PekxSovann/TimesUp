@@ -2,6 +2,11 @@ import { createContext, useState } from 'react';
 
 import { Player } from 'types';
 
+export interface ChangeWordFct {
+  solo: React.Dispatch<React.SetStateAction<ISoloGame>>;
+  game: React.Dispatch<React.SetStateAction<IGame>>;
+}
+
 interface ISoloGame {
   chrono: number;
   words: number;
