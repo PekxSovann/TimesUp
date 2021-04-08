@@ -1,5 +1,5 @@
 import React, { useState, useContext, useEffect } from 'react';
-import { Platform, KeyboardAvoidingView, ScrollView } from 'react-native';
+import { Platform, KeyboardAvoidingView, ScrollView, SafeAreaView } from 'react-native';
 import Spinner from 'react-native-loading-spinner-overlay';
 
 import Header from 'components/Header';
@@ -40,7 +40,7 @@ const HomePage = ({ navigation }) => {
       <KeyboardAvoidingView
         behavior={Platform.OS === "ios" ? "padding" : undefined}
       >
-        <ScrollView>
+        <ScrollView keyboardShouldPersistTaps={'handled'} >
           <Header settingFct={() => modalContext.setVisibility(true)} />
 
           <LogoContainer>

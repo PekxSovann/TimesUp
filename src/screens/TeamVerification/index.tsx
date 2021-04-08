@@ -41,18 +41,16 @@ const TeamVerification = (): JSX.Element => {
 
     for (let i = 0; i < wordsContext.wordPersoList.length; i++)
       tmp.push(wordsContext.wordPersoList[i]);
-    for (let i = tmp.length; i < gameContext.game.words; i++) {
+    while (tmp.length < gameContext.game.words) {
       random = Math.floor(Math.random() * wordsContext.wordList.length);
-      if (pos.includes(random)) {
-        i--;
+      if (pos.includes(random))
         continue;
-      }
       pos.push(random);
       tmp.push(wordsContext.wordList[random]);
       wordToFind.push(wordsContext.wordList[random]);
     }
     gameContext.setGame({ ...gameContext.game, gameWords: tmp, wordToFind });
-    navigation.navigate('Game');
+    navigation.navigate('TeamGame');
   }
 
   return (

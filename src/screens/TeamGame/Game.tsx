@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext } from 'react';
 import styled from 'styled-components/native';
 
 import Text from 'components/Text';
@@ -34,7 +34,6 @@ const Game = (props: GameProps): JSX.Element => {
   const {
     currentWord,
     setCurrentWord,
-    resetWord
   } = props;
   const gameContext = useContext(GameContext);
   const wordingContext = useContext(WordingContext);

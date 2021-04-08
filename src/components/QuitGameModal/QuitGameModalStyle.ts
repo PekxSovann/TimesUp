@@ -44,7 +44,7 @@ const gradientStyle = {
 };
 
 const textProps = {
-  size: SizeType.BIG,
+  size: SizeType.MEDIUM,
   color: theme.black,
   font: ElementType.SEMIBOLD,
 };

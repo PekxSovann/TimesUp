@@ -1,0 +1,9 @@
+com/timesup/MainApplication.java
+ com.timesup.MainApplication
+ com.timesup.MainApplication$1
+com/timesup/MainActivity.java
+ com.timesup.MainActivity
+com/timesup/BuildConfig.java
+ com.timesup.BuildConfig
+com/facebook/react/PackageList.java
+ com.facebook.react.PackageList

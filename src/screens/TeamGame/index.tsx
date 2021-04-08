@@ -1,9 +1,11 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
+import Orientation from 'react-native-orientation-locker';
+import { BackHandler } from 'react-native';
 
 import InGameHeader from 'components/InGameHeader';
 import QuitGameModal from 'components/QuitGameModal';
 
-import GameContext, { Teams } from 'hooks/game';
+import GameContext from 'hooks/game';
 
 import {
   Container,
@@ -52,8 +54,14 @@ const TeamGame = (): JSX.Element => {
       displayRanking: true,
     });
     setCurrentWord(0);
-    console.log("RESET!!!!");
   }
+
+  useEffect(() => {
+    Orientation.lockToLandscape();
+    BackHandler.addEventListener('hardwareBackPress', () => true)
+      return () =>
+        BackHandler.removeEventListener('hardwareBackPress', () => true)
+  }, []);
 
   return (
     <Container>

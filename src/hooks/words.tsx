@@ -1,7 +1,5 @@
 import { useEffect, useState, createContext, useContext } from 'react';
 
-import WordingContext from 'hooks/wording';
-
 const wordData = require('static/basicWords.json');
 
 export interface useWordProps {
@@ -12,6 +10,7 @@ export interface useWordProps {
   addWord: (word: string) => void;
   deleteWord: (index: number) => void;
   changeLanguage: (word: string) => void;
+  changeWord: (word: number, words: string[]) => string[];
 }
 
 const WordsContext = createContext<useWordProps>({
@@ -22,10 +21,10 @@ const WordsContext = createContext<useWordProps>({
   addWord: (word: string) => {},
   deleteWord: (index: number) => {},
   changeLanguage: (word: string) => {},
+  changeWord: (word: number, words: string[]) => { return []; },
 });
 
 export const useWords = (): useWordProps => {
-  const wordingContext = useContext(WordingContext);
   const [useDefaultWords, setDefaultWord] = useState(true);
   const [wordList, setWordList] = useState<string[]>([]);
   const [wordPersoList, setWordPersoList] = useState<string[]>([]);
@@ -47,16 +46,34 @@ export const useWords = (): useWordProps => {
   }
 
   const changeLanguage = (language: string): void => {
-    const tmp = new Array(wordList);
+    const tmp = wordList;
     setWordList(wordHistory[language]);
     setHistory({ ...wordHistory, [defaultLanguage]: tmp });
     setDefault(language);
   }
 
+  const changeWord = (index: number, words: string[]): string[] => {
+    const tmp: string[] = [];
+    const wordToReplace = words[index];
+    let random: number = 0;
+
+    for (let i = 0; i < words.length; i++)
+      tmp.push(words[i]);
+    while (wordToReplace === words[index]) {
+      random = Math.floor(Math.random() * wordList.length);
+      if (tmp.includes(wordList[random]))
+        continue;
+      tmp[index] = wordList[random];
+      break;
+    }
+    console.log(tmp);
+    return tmp;
+  }
+
   useEffect(() => {
     setHistory(wordData);
-    setWordList(wordData[wordingContext.language]);
-  });
+    setWordList(wordData[defaultLanguage]);
+  }, []);
 
   return {
     wordList,
@@ -65,7 +82,8 @@ export const useWords = (): useWordProps => {
     setDefaultWord,
     addWord,
     deleteWord,
-    changeLanguage
+    changeLanguage,
+    changeWord,
   };
 }
 

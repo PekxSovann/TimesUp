@@ -1,5 +1,7 @@
 import React, { useContext } from 'react';
 import { FlatList } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
+import Orientation from 'react-native-orientation-locker';
 import styled from 'styled-components/native';
 
 import Text from 'components/Text';
@@ -10,6 +12,7 @@ import { ElementType, SizeType } from 'types';
 
 import WordingContext from 'hooks/wording';
 import GameContext, { Teams } from 'hooks/game';
+import PlayersContext from 'hooks/players';
 
 import scale from 'static/scale';
 import theme from 'static/theme';
@@ -43,8 +46,10 @@ interface Ranking {
 
 const Ranking = (props: Ranks): JSX.Element => {
   const { setStart } = props;
+  const navigation = useNavigation();
   const gameContext = useContext(GameContext);
   const wordingContext = useContext(WordingContext);
+  const playerContext = useContext(PlayersContext);
 
   const sortWinner = (): Teams[] => {
     let tmp: Teams[] = [];
@@ -108,11 +113,31 @@ const Ranking = (props: Ranks): JSX.Element => {
 
       <BottomContainer>
         <LinearGradientButton
-          onPress={() => playNextRound()}
+          onPress={() => {
+            if (gameContext.game.round >= 3) {
+              Orientation.lockToPortrait();
+              navigation.navigate('Home');
+              gameContext.setGame({
+                teams: [],
+                chrono: 60,
+                words: 20,
+                currentWord: 0,
+                round: 0,
+                numberOfTeam: 2,
+                memberPerTeam: 2,
+                roundStart: false,
+                currentTeam: 0,
+                displayRanking: false,
+                gameWords: [],
+                wordToFind: [],
+              })
+              playerContext.resetPlayersPoint();
+            } else playNextRound()
+          }}
           style={style}
           textProps={textProps}
           gradientStyle={gradientStyle}
-          label={wordingContext.wording.buttons.next}
+          label={gameContext.game.round >= 3 ? wordingContext.wording.buttons.end : wordingContext.wording.buttons.next}
         />
       </BottomContainer>
     </>

@@ -1,4 +1,4 @@
-import React, { useState, useContext, useEffect } from 'react';
+import React, { useState, useContext } from 'react';
 import { useNavigation } from '@react-navigation/native';
 
 import PreGameHeader from 'components/PreGameHeader';
@@ -25,15 +25,47 @@ const SoloSettings = (): JSX.Element => {
   const playerContext = useContext(PlayerContext);
   const wordContext = useContext(WordContext);
   const wordingContext = useContext(WordingContext);
-  const [solo, setSolo] = useState({ chrono: 60, words: 20, currentWord: 0, round: 0 });
+  const [solo, setSolo] = useState({
+    chrono: 10,
+    words: 20,
+    currentWord: 0,
+    round: 0,
+    roundStart: false,
+    displayRanking: false,
+    gameWords: [],
+    wordToFind: [],
+    currentPlayer: 1,
+    clueGiver: 0,
+  });
 
   const confirmSettings = (): void => {
-    const tmp: Player[] = [];
+    const players: Player[] = [];
+    const tmp: string[] = [];
+    const wordToFind: string[] = [];
+    const pos: number[] = [];
+    let random: number = 0;
 
     for (let i = 0; i < playerContext.playerList.length; i++)
-      tmp.push(playerContext.playerList[i]);
-    gameContext.setSolo({ ...solo, players: tmp });
-    navigation.navigate('Home');
+      players.push(playerContext.playerList[i]);
+    for (let i = 0; i < wordContext.wordPersoList.length; i++)
+      tmp.push(wordContext.wordPersoList[i]);
+    while (tmp.length < solo.words) {
+      random = Math.floor(Math.random() * wordContext.wordList.length);
+      if (pos.includes(random))
+        continue;
+      pos.push(random);
+      tmp.push(wordContext.wordList[random]);
+      wordToFind.push(wordContext.wordList[random]);
+    }
+    gameContext.setSolo({
+      ...solo,
+      gameWords: tmp,
+      wordToFind,
+      players: players,
+    });
+    navigation.navigate('WordSelection', {
+      option: 'solo',
+    });
   };
 
   return (
@@ -66,7 +98,7 @@ const SoloSettings = (): JSX.Element => {
           style={style}
           textProps={textProps}
           gradientStyle={gradientStyle}
-          label={wordingContext.wording.buttons.play}
+          label={wordingContext.wording.buttons.word}
         />
       </ButtonContainer>
     </Container>

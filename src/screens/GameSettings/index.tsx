@@ -38,7 +38,6 @@ const GameSettings = (): JSX.Element => {
     displayRanking: false,
     gameWords: [],
     wordToFind: [],
-    wordInArray: 0,
   });
 
   const getNumberPerTeam = (): void => {

@@ -11,6 +11,9 @@ interface Language {
   game: {
     points: string;
     team: string;
+    clueGiver: string;
+    guesser: string;
+    next: string;
   },
   round: {
     firstRule: string;
@@ -25,6 +28,7 @@ interface Language {
     word: string;
     perWord: string;
     ranking: string;
+    final: string;
   },
   preGame: {
     soloTitle: string;
@@ -49,6 +53,8 @@ interface Language {
     no: string;
     skip: string;
     next: string;
+    end: string;
+    word: string;
   };
   modal: {
     language: string;
@@ -59,12 +65,16 @@ interface Language {
   };
   errors: {
     player: string;
+    soloPlayer: string;
   };
   pos: {
     first: string;
     second: string;
     third: string;
     other: string;
+  };
+  wordSettings: {
+    title: string
   };
 }
 
@@ -76,16 +86,17 @@ export interface WordingProps {
 
 const WordingContext = createContext<WordingProps>({
   wording: {
-    game: { team: '', points: '' },
-    gameSettings: { team: '', memberPerTeam: '', chrono: '', word: '', perWord: '', member: '', ranking: '' },
+    game: { team: '', points: '', clueGiver: '', guesser: '', next: '' },
+    gameSettings: { final: '', team: '', memberPerTeam: '', chrono: '', word: '', perWord: '', member: '', ranking: '' },
     preGame: { soloTitle: '', soloDescription: '', gameTitle: '', gameDescription: '' },
     selection: { playerSelect: '', wordSelect: '' },
     input : { inputPlayer: '', inputWord: '' },
-    buttons: { play: '', rules: '', quit: '', create: '', yes: '', no: '', skip: '', next: '' },
+    buttons: { word: '', end: '', play: '', rules: '', quit: '', create: '', yes: '', no: '', skip: '', next: '' },
     modal: { language: '', default: '', loading: '', error: '', quit: '' },
-    errors: { player: '' },
+    errors: { player: '', soloPlayer: '' },
     round: { firstRule: '', secondRule: '', lastRule: '' },
-    pos: { first: '', second: '', third: '', other: '' }
+    pos: { first: '', second: '', third: '', other: '' },
+    wordSettings: { title: '' }
   },
   changeLanguage: () => {},
   language: 'english',
