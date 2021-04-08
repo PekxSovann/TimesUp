@@ -26,7 +26,6 @@ const RightButtons = (props: ButtonsProps): JSX.Element => {
 
     for (let i = 0; i < gameContext.solo.players.length; i++)
       playerBulk.push(gameContext.solo.players[i]);
-    playerBulk[gameContext.solo.currentPlayer].points++;
     gameContext.setSolo({
       ...gameContext.solo,
       clueGiver: (gameContext.solo.clueGiver + 1) % gameContext.solo.players.length,

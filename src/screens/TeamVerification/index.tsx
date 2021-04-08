@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useContext } from 'react';
 import { useNavigation } from '@react-navigation/native';
 
 import PreGameHeader from 'components/PreGameHeader';
@@ -50,7 +50,9 @@ const TeamVerification = (): JSX.Element => {
       wordToFind.push(wordsContext.wordList[random]);
     }
     gameContext.setGame({ ...gameContext.game, gameWords: tmp, wordToFind });
-    navigation.navigate('TeamGame');
+    navigation.navigate('WordSelection', {
+      option: 'game',
+    });
   }
 
   return (
@@ -83,7 +85,7 @@ const TeamVerification = (): JSX.Element => {
           style={style}
           textProps={textProps}
           gradientStyle={gradientStyle}
-          label={wordingContext.wording.buttons.play}
+          label={wordingContext.wording.buttons.word}
         />
       </ButtonContainer>
     </Container>

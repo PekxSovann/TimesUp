@@ -44,7 +44,9 @@
       "skip": "PASSER",
       "next": "PROCHAIN ROUND",
       "end": "TERMINER",
-      "word": "LIST DES MOTS"
+      "word": "LIST DES MOTS",
+      "ff": "ABANDONNER",
+      "nextPlayer": "NEXT PLAYER"
     },
     "modal": {
       "language" : "Langue",
@@ -114,7 +116,9 @@
       "skip": "SKIP",
       "next": "NEXT ROUND",
       "end": "FINISH",
-      "word": "WORD LIST"
+      "word": "WORD LIST",
+      "ff": "GIVE UP",
+      "nextPlayer": "NEXT PLAYER"
     },
     "modal": {
       "language" : "Language",

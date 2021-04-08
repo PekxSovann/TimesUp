@@ -1,5 +1,4 @@
 import React, { useContext } from 'react';
-import { useNavigation } from '@react-navigation/native';
 
 import { SettingButton, QuitLogo } from 'components/Header/HeaderStyle';
 import Text from 'components/Text';

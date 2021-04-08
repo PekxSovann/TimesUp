@@ -65,13 +65,21 @@ const Ranking = (props: Ranks): JSX.Element => {
     gameContext.setSolo({ ...gameContext.solo, displayRanking: false })
   }
 
+  const isEnd = (): string => {
+    if (gameContext.solo.round >= 2)
+      wordingContext.wording.buttons.end
+    if (gameContext.solo.currentWord < gameContext.solo.words)
+      return wordingContext.wording.buttons.nextPlayer;
+    return wordingContext.wording.buttons.next;
+  }
+
   const ranks: Player[] = sortWinner();
   const rank = [
     wordingContext.wording.pos.first,
     wordingContext.wording.pos.second,
     wordingContext.wording.pos.third,
     wordingContext.wording.pos.other,
-  ]
+  ];
 
   return (
     <>
@@ -136,7 +144,7 @@ const Ranking = (props: Ranks): JSX.Element => {
           style={style}
           textProps={textProps}
           gradientStyle={gradientStyle}
-          label={gameContext.solo.round >= 2 ? wordingContext.wording.buttons.end : wordingContext.wording.buttons.next}
+          label={isEnd()}
         />
       </BottomContainer>
     </>

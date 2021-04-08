@@ -1,5 +1,5 @@
 import React, { useState, useContext, useEffect } from 'react';
-import { Platform, KeyboardAvoidingView, ScrollView, SafeAreaView } from 'react-native';
+import { Platform } from 'react-native';
 import Spinner from 'react-native-loading-spinner-overlay';
 
 import Header from 'components/Header';
@@ -20,6 +20,7 @@ import {
   Container,
   LogoContainer,
   ListContainer,
+  Aware
 } from './HomeStyle';
 import HomeBottomPage from './HomeBottomPage';
 import ListPlayer from './ListPlayer';
@@ -36,42 +37,40 @@ const HomePage = ({ navigation }) => {
   const wordingContext = useContext(useWording);
 
   return (
-    <Container>
-      <KeyboardAvoidingView
+    <Aware>
+      <Container
         behavior={Platform.OS === "ios" ? "padding" : undefined}
       >
-        <ScrollView keyboardShouldPersistTaps={'handled'} >
-          <Header settingFct={() => modalContext.setVisibility(true)} />
+        <Header settingFct={() => modalContext.setVisibility(true)} />
 
-          <LogoContainer>
-            <Logo width={'80%'} height={'80%'} />
-          </LogoContainer>
+        <LogoContainer>
+          <Logo width={'80%'} height={'80%'} />
+        </LogoContainer>
 
-          <Selection
-            selection={selection}
-            setSelection={setSelection}
-            setInput={setInput}
-          />
+        <Selection
+          selection={selection}
+          setSelection={setSelection}
+          setInput={setInput}
+        />
 
-          <ListContainer>
-            {selection ?
-              ( <ListPlayer list={playerContext.playerList} deleteItem={playerContext.deletePlayer} load={setLoading} /> )
-            :
-              ( <ListWord list={wordContext.wordPersoList} deleteItem={wordContext.deleteWord} load={setLoading} /> )
-            }
-          </ListContainer>
+        <ListContainer>
+          {selection ?
+            ( <ListPlayer list={playerContext.playerList} deleteItem={playerContext.deletePlayer} load={setLoading} /> )
+          :
+            ( <ListWord list={wordContext.wordPersoList} deleteItem={wordContext.deleteWord} load={setLoading} /> )
+          }
+        </ListContainer>
 
-          <HomeBottomPage
-            selection={selection}
-            input={input}
-            addWord={wordContext.addWord}
-            addPlayer={playerContext.addPlayer}
-            setInput={setInput}
-            navigation={navigation}
-          />
-        </ScrollView>
-      </KeyboardAvoidingView>
+        <HomeBottomPage
+          selection={selection}
+          input={input}
+          addWord={wordContext.addWord}
+          addPlayer={playerContext.addPlayer}
+          setInput={setInput}
+          navigation={navigation}
+        />
 
+      </Container>
       <Spinner
         visible={loading}
         textContent={wordingContext.wording.modal.loading}
@@ -81,7 +80,7 @@ const HomePage = ({ navigation }) => {
       <SettingModal />
 
       <ErrorModal />
-    </Container>
+    </Aware>
   );
 };
 

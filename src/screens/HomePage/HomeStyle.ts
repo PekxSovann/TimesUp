@@ -1,5 +1,6 @@
 import styled from 'styled-components/native';
 import { Dimensions } from 'react-native';
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 
 import TextInput from 'components/TextInput';
 
@@ -8,10 +9,13 @@ import { SelectionButtonProps } from 'types';
 import theme from 'static/theme';
 import scale from 'static/scale';
 
+const Aware = styled(KeyboardAwareScrollView)`
+  background-color: ${theme.background};
+`;
+
 const Container = styled.View`
   background-color: ${theme.background};
   flex: 1;
-  height: ${Dimensions.get('window').height}px;
 `;
 
 const LogoContainer = styled.View`
@@ -21,8 +25,7 @@ const LogoContainer = styled.View`
 `;
 
 const SelectionContainer = styled.View`
-  flex: 0.15;
-  height: ${Dimensions.get('window').height / 9}px;
+  height: ${Dimensions.get('window').height / 11}px;
   flex-direction: row;
   justify-content: space-evenly;
   align-items: center;
@@ -45,20 +48,18 @@ const ButtonContainer = styled.View`
 `;
 
 const ListContainer = styled.View`
-  flex-basis: 0.45;
   height: ${Dimensions.get('window').height / 2.75}px;
+  min-height: ${Dimensions.get('window').height / 2.75}px;
   margin-top: ${`${scale(3)}px`};
 `;
 
 const AddInputContainer = styled.View`
-  flex: 0.1;
   height: ${Dimensions.get('window').height / 11}px;
   background-color: ${theme.white};
   flex-direction: row;
 `;
 
 const PlayContainer = styled.View`
-  flex: 0.2;
   height: ${Dimensions.get('window').height / 10}px;
   justify-content: center;
   align-items: center;
@@ -101,4 +102,5 @@ export {
   CustomTextInput,
   AddButton,
   ButtonContainer,
+  Aware
 };

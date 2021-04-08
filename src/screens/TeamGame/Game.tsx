@@ -110,14 +110,13 @@ const Game = (props: GameProps): JSX.Element => {
             label={wordingContext.wording.buttons.skip}
           />
         ) : (
-          <Text
-            font={ElementType.BOLD}
-            size={SizeType.SMALL}
-            color={theme.grey}
-            style={{ textAlign: 'center' }}
-          >
-            {rules[gameContext.game.round]}
-          </Text>
+          <LinearGradientButton
+            onPress={() => onRoundComplete()}
+            style={style}
+            textProps={textProps}
+            gradientStyle={gradientStyle}
+            label={wordingContext.wording.buttons.ff}
+          />
         )}
       </BottomContainer>
     </>

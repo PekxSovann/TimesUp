@@ -10,6 +10,7 @@ import theme from 'static/theme';
 import { ElementType, SizeType } from 'types';
 
 import ModalContext from 'hooks/modal';
+import PlayersContext from 'hooks/players';
 import WordingContext from 'hooks/wording';
 
 import {
@@ -28,6 +29,7 @@ const QuitGameModal = (): JSX.Element => {
   const modalContext = useContext(ModalContext);
   const wordingContext = useContext(WordingContext);
   const gameContext = useContext(GameContext);
+  const playerContext = useContext(PlayersContext);
 
   const resetGame = (): void => {
     gameContext.setGame({
@@ -57,6 +59,7 @@ const QuitGameModal = (): JSX.Element => {
       currentPlayer: 0,
       clueGiver: 0,
     })
+    playerContext.resetPlayersPoint();
   }
 
   return (

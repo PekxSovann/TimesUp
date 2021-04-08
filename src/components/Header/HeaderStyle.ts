@@ -7,7 +7,6 @@ import QuitButton from 'assets/QuitButton.svg';
 import scale from 'static/scale';
 
 const SettingsContainer = styled.View`
-  flex: 0.1;
   flex-direction: row;
   justify-content: flex-end;
   height: ${Dimensions.get('window').height / 12}px;
