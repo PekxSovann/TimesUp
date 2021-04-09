@@ -1,4 +1,4 @@
-#Sat Mar 27 18:45:23 KST 2021
+#Thu Apr 08 16:50:50 KST 2021
 base.0=/Users/pekxsovann/Desktop/Perso/TimesUp/android/app/build/intermediates/dex/release/mergeDexRelease/classes.dex
 path.0=classes.dex
 renamed.0=classes.dex

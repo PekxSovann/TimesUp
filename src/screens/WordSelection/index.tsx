@@ -10,7 +10,7 @@ import { ElementType, SizeType } from 'types';
 
 import WordsContext from 'hooks/words';
 import WordingContext from 'hooks/wording';
-import GameContext from 'hooks/game';
+import GameContext, { ChangeWordFct } from 'hooks/game';
 
 import {
   Container,
@@ -35,9 +35,22 @@ const WordSelection = ({ route }): JSX.Element => {
   const navigation = useNavigation();
   const wordingContext = useContext(WordingContext);
   const wordsContext = useContext(WordsContext);
+  const gameContext = useContext(GameContext);
   const navOption: NavigationOption = {
     solo: 'SoloGame',
     game: 'TeamGame'
+  }
+  const functions: ChangeWordFct = {
+    solo: gameContext.setSolo,
+    game: gameContext.setGame,
+  }
+
+  const saveNewGameWord = (): void => {
+    functions[option]({
+      ...gameContext[option],
+      gameWords: gameContext[option].wordToFind
+    })
+    navigation.navigate(navOption[option]);
   }
 
   return (
@@ -63,7 +76,7 @@ const WordSelection = ({ route }): JSX.Element => {
 
         <ButtonContainer>
           <LinearGradientButton
-            onPress={() => navigation.navigate(navOption[option])}
+            onPress={() => saveNewGameWord()}
             style={style}
             textProps={textProps}
             gradientStyle={gradientStyle}

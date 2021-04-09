@@ -1,11 +1,11 @@
 [
     {
-        "merged": "/Users/pekxsovann/Desktop/Perso/TimesUp/android/app/build/intermediates/res/merged/release/drawable-hdpi_node_modules_reactnavigation_stack_src_views_assets_backicon.png.flat",
-        "source": "/Users/pekxsovann/Desktop/Perso/TimesUp/android/app/build/generated/res/react/release/drawable-hdpi/node_modules_reactnavigation_stack_src_views_assets_backicon.png"
-    },
-    {
         "merged": "/Users/pekxsovann/Desktop/Perso/TimesUp/android/app/build/intermediates/res/merged/release/mipmap-xxxhdpi_ic_launcher_round.png.flat",
         "source": "/Users/pekxsovann/Desktop/Perso/TimesUp/android/app/src/main/res/mipmap-xxxhdpi/ic_launcher_round.png"
+    },
+    {
+        "merged": "/Users/pekxsovann/Desktop/Perso/TimesUp/android/app/build/intermediates/res/merged/release/drawable-hdpi_node_modules_reactnavigation_stack_src_views_assets_backicon.png.flat",
+        "source": "/Users/pekxsovann/Desktop/Perso/TimesUp/android/app/build/generated/res/react/release/drawable-hdpi/node_modules_reactnavigation_stack_src_views_assets_backicon.png"
     },
     {
         "merged": "/Users/pekxsovann/Desktop/Perso/TimesUp/android/app/build/intermediates/res/merged/release/drawable-mdpi_node_modules_reactnavigation_stack_src_views_assets_backiconmask.png.flat",

@@ -55,7 +55,10 @@ const ListWord = (props: ListWordProps): JSX.Element => {
 
             <ReloadButton onPress={() => {
               setLoading(!loading)
-              functions[option]({ ...gameContext[option] , wordToFind: reload(index, gameContext[option].wordToFind) });
+              functions[option]({
+                ...gameContext[option],
+                wordToFind: reload(index, gameContext[option].wordToFind),
+              });
             }}>
               <Reload width={'100%'} height={'100%'}/>
             </ReloadButton>

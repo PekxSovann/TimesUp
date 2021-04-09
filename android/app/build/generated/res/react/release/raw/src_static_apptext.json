@@ -43,7 +43,10 @@
       "no": "NON",
       "skip": "PASSER",
       "next": "PROCHAIN ROUND",
-      "end": "TERMINER"
+      "end": "TERMINER",
+      "word": "LIST DES MOTS",
+      "ff": "ABANDONNER",
+      "nextPlayer": "NEXT PLAYER"
     },
     "modal": {
       "language" : "Langue",
@@ -61,6 +64,9 @@
       "second": "ème",
       "third": "ème",
       "other": "ème"
+    },
+    "wordSettings": {
+      "title": "Liste de mots"
     }
   },
   "english": {
@@ -109,7 +115,10 @@
       "no": "NO",
       "skip": "SKIP",
       "next": "NEXT ROUND",
-      "end": "FINISH"
+      "end": "FINISH",
+      "word": "WORD LIST",
+      "ff": "GIVE UP",
+      "nextPlayer": "NEXT PLAYER"
     },
     "modal": {
       "language" : "Language",
@@ -127,6 +136,9 @@
       "second": "nd",
       "third": "rd",
       "other": "th"
+    },
+    "wordSettings": {
+      "title": "Word List"
     }
   }
 }
