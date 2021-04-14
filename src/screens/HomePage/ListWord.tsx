@@ -23,6 +23,8 @@ export interface ListWordProps {
 const ListWord = (props: ListWordProps): JSX.Element => {
   const { list, deleteItem, load } = props;
 
+  const formatWords = (word: string): string => word.length <= 14 ?  word :  `${word.substring(0, 14)}...`;
+
   return (
     <FlatList
       data={list}
@@ -35,7 +37,7 @@ const ListWord = (props: ListWordProps): JSX.Element => {
             size={SizeType.BIG}
             color={theme.black}
           >
-            {`${index + 1}. ${item}`}
+            {`${index + 1}. ${formatWords(item)}`}
           </Text>
 
           <RemoveButton onPress={() => {

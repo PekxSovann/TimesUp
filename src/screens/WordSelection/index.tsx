@@ -45,11 +45,35 @@ const WordSelection = ({ route }): JSX.Element => {
     game: gameContext.setGame,
   }
 
-  const saveNewGameWord = (): void => {
-    functions[option]({
+  const startGame = (): void => {
+    const tmp: string[] = [];
+    const wordToFind: string[] = [];
+    const pos: number[] = [];
+    let random: number = 0;
+
+    for (let i = 0; i < wordsContext.wordPersoList.length; i++) {
+      tmp.push(wordsContext.wordPersoList[i]);
+      wordToFind.push(wordsContext.wordPersoList[i]);
+    }
+    while (tmp.length < gameContext[option].words) {
+      random = Math.floor(Math.random() * wordsContext.wordList.length);
+      if (pos.includes(random))
+        continue;
+      pos.push(random);
+      tmp.push(wordsContext.wordList[random]);
+      wordToFind.push(wordsContext.wordList[random]);
+    }
+    for (var i = wordToFind.length - 1; i > 0; i--) {
+      var j = Math.floor(Math.random() * (i + 1));
+      var temp = wordToFind[i];
+      wordToFind[i] = wordToFind[j];
+      wordToFind[j] = temp;
+    }
+    gameContext.setGame({
       ...gameContext[option],
-      gameWords: gameContext[option].wordToFind
-    })
+      gameWords: tmp,
+      wordToFind
+    });
     navigation.navigate(navOption[option]);
   }
 
@@ -76,7 +100,7 @@ const WordSelection = ({ route }): JSX.Element => {
 
         <ButtonContainer>
           <LinearGradientButton
-            onPress={() => saveNewGameWord()}
+            onPress={() => startGame()}
             style={style}
             textProps={textProps}
             gradientStyle={gradientStyle}

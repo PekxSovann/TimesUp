@@ -1,6 +1,5 @@
 import styled from 'styled-components/native';
 import { Dimensions } from 'react-native';
-import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 
 import TextInput from 'components/TextInput';
 
@@ -8,10 +7,6 @@ import { SelectionButtonProps } from 'types';
 
 import theme from 'static/theme';
 import scale from 'static/scale';
-
-const Aware = styled(KeyboardAwareScrollView)`
-  background-color: ${theme.background};
-`;
 
 const Container = styled.View`
   background-color: ${theme.background};
@@ -102,5 +97,4 @@ export {
   CustomTextInput,
   AddButton,
   ButtonContainer,
-  Aware
 };
